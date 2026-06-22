@@ -16,6 +16,11 @@ const serviceSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    
+    deliveryTime: {
+     type: String,
+     required: true,
+   },
 
     category: {
       type: String,
@@ -33,4 +38,4 @@ const serviceSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Service", serviceSchema);
+module.exports = mongoose.models.Service || mongoose.model("Service", serviceSchema);

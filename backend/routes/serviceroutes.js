@@ -21,5 +21,11 @@ router.post(
 );
 router.put("/:id", protect, updateService);
 router.delete("/:id", protect, deleteService);
+router.put(
+  "/:id",
+  protect,
+  authorizeRoles("provider"),
+  updateService
+);
 
 module.exports = router;

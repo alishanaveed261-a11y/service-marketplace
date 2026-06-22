@@ -2,13 +2,14 @@ const Service = require("../models/Service");
 
 const createService = async (req, res) => {
   try {
-    const { title, description, price, category } = req.body;
+    const {title,description,category,price,deliveryTime,} = req.body;
 
     const service = await Service.create({
       title,
       description,
       price,
       category,
+      deliveryTime,
       provider: req.user._id,
     });
 
@@ -64,13 +65,24 @@ const updateService = async (req, res) => {
       });
     }
 
-    service.title = req.body.title || service.title;
-    service.description =
-      req.body.description || service.description;
-    service.price = req.body.price || service.price;
-    service.category =
-      req.body.category || service.category;
+    service.title =
+  req.body.title || service.title;
 
+service.description =
+  req.body.description ||
+  service.description;
+
+service.price =
+  req.body.price || service.price;
+
+service.category =
+  req.body.category ||
+  service.category;
+
+service.deliveryTime =
+  req.body.deliveryTime ||
+  service.deliveryTime;
+  
     const updatedService = await service.save();
 
     res.status(200).json(updatedService);
